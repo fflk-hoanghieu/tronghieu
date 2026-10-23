@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08080b">
+    <meta name="description" content="Vc-tech - Profile Trọng Hiếu. Khám phá lập trình, phát triển website, Discord bot và các dự án công nghệ.">
+    <title>Vc-tech | Developer Profile</title>
+
+    <style>
+        :root {
+            --bg: #08080b;
+            --panel: #111114;
+            --panel-light: #151519;
+            --border: #29292f;
+            --text: #f4f4f5;
+            --muted: #a1a1aa;
+            --purple: #a855f7;
+            --purple-light: #c084fc;
+            --green: #22c55e;
+            --red: #ff5f57;
+            --yellow: #febc2e;
+            --blue: #28c840;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Arial, sans-serif;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1050px, calc(100% - 36px));
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+
+        .header {
+            height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1d1d22;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 8, 11, 0.94);
+            backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: min(1050px, calc(100% - 36px));
+            margin: auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo {
+            width: 43px;
+            height: 43px;
+            border: 1px solid #666670;
+            background: #101014;
+            display: grid;
+            place-items: center;
+            border-radius: 7px;
+            color: var(--purple);
+            font-size: 26px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .brand-name span {
+            color: var(--purple-light);
+        }
+
+        .menu-button {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        .menu-button:hover {
+            border-color: var(--purple);
+        }
+
+        .menu-button span {
+            width: 19px;
+            height: 2px;
+            background: #eee;
+            border-radius: 2px;
+            transition: 0.2s;
+        }
+
+        .menu-button.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-button.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* DROPDOWN MENU */
+
+        .menu-dropdown {
+            position: absolute;
+            top: 70px;
+            right: max(18px, calc((100% - 1050px) / 2));
+            width: 230px;
+            background: #111114;
+            border: 1px solid #303038;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+            display: none;
+            animation: menuIn 0.18s ease;
+        }
+
+        .menu-dropdown.open {
+            display: block;
+        }
+
+        @keyframes menuIn {
+            from {
+                opacity: 0;
+                transform: translateY(-7px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-dropdown button {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: #d4d4d8;
+            text-align: left;
+            padding: 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            transition: 0.2s;
+        }
+
+        .menu-dropdown button:hover,
+        .menu-dropdown button.active {
+            color: var(--purple-light);
+            background: #20152c;
+        }
+
+        .menu-icon {
+            width: 24px;
+            text-align: center;
+        }
+
+        /* PAGE SYSTEM */
+
+        .page {
+            display: none;
+            min-height: calc(100vh - 155px);
+            padding-top: 48px;
+            padding-bottom: 70px;
+            animation: pageIn 0.28s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(7px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* WINDOW PANEL */
+
+        .window {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            overflow: hidden;
+        }
+
+        .window-bar {
+            height: 43px;
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #131316;
+            border-bottom: 1px solid #29292f;
+        }
+
+        .window-title {
+            color: #d4d4d8;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .window-dots {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot.red {
+            background: var(--red);
+        }
+
+        .dot.yellow {
+            background: var(--yellow);
+        }
+
+        .dot.green {
+            background: var(--blue);
+        }
+
+        .window-content {
+            padding: 23px;
+        }
+
+        /* HOME */
+
+        .hero {
+            padding: 42px 0 30px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--purple-light);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--purple);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+        }
+
+        h1 {
+            font-size: clamp(30px, 5vw, 49px);
+            line-height: 1.2;
+            letter-spacing: -1.6px;
+            margin-bottom: 21px;
+            font-weight: 750;
+        }
+
+        .gradient {
+            color: var(--purple-light);
+        }
+
+        .hero-description {
+            color: #a1a1aa;
+            font-size: 15px;
+            max-width: 720px;
+            margin-bottom: 24px;
+            line-height: 1.9;
+        }
+
+        .hero-description strong {
+            color: #e4e4e7;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            min-height: 45px;
+            padding: 11px 17px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            font-size: 13px;
+            font-weight: 650;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--purple);
+            color: white;
+            border: 1px solid var(--purple);
+        }
+
+        .btn-primary:hover {
+            background: #9333ea;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #151519;
+            color: #e4e4e7;
+            border: 1px solid #35353d;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .code {
+            background: #0e0e11;
+            color: #d4d4d8;
+            padding: 21px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .line-number {
+            display: inline-block;
+            width: 27px;
+            color: #555560;
+            user-select: none;
+        }
+
+        .code-purple {
+            color: #c084fc;
+        }
+
+        .code-green {
+            color: #86efac;
+        }
+
+        .code-yellow {
+            color: #fcd34d;
+        }
+
+        .code-blue {
+            color: #93c5fd;
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .mini-card {
+            background: #111114;
+            border: 1px solid #29292f;
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.2s;
+        }
+
+        .mini-card:hover {
+            border-color: #65428a;
+            transform: translateY(-3px);
+        }
+
+        .mini-icon {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .mini-card h3 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .mini-card p {
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        /* SECTION HEADINGS */
+
+        .section-heading {
+            font-size: clamp(25px, 4vw, 34px);
+            letter-spacing: -0.8px;
+            line-height: 1.4;
+            margin: 28px 0 12px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* PROFILE */
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-header .logo {
+            width: 44px;
+            height: 44px;
+        }
+
+        .profile-name {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .profile-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            width: 100%;
+            margin-top: 19px;
+            padding: 11px 13px;
+            background: #102017;
+            color: #b8f7cb;
+            border: 1px solid #234b31;
+            border-radius: 7px;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            flex-shrink: 0;
+        }
+
+        .status strong {
+            color: #4ade80;
+            font-size: 13px;
+        }
+
+        .profile-data {
+            margin-top: 21px;
+        }
+
+        .data-row {
+            display: grid;
+            grid-template-columns: 145px minmax(0, 1fr);
+            gap: 14px;
+            padding: 13px 0;
+            border-bottom: 1px solid #27272d;
+            font-size: 13px;
+        }
+
+        .data-row:last-child {
+            border-bottom: 0;
+        }
+
+        .data-label {
+            color: #a1a1aa;
+        }
+
+        .data-value {
+            color: #f4f4f5;
+            overflow-wrap: anywhere;
+        }
+
+        .expertise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .expertise-list span::before {
+            content: "›";
+            color: var(--purple-light);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 13px;
+            margin-top: 18px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #111114;
+            border: 1px solid #29292f;
+            border-radius: 9px;
+            padding: 17px;
+            min-height: 76px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: #65428a;
+        }
+
+        .feature-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        /* PROJECTS */
+
+        .quote-box {
+            margin: 18px 0 30px;
+            padding: 24px;
+            border: 1px solid #393040;
+            border-radius: 10px;
+            background: linear-gradient(130deg, #17121e, #101014 65%);
+        }
+
+        .quote-mark {
+            color: var(--purple-light);
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 14px;
+        }
+
+        .quote-box h2 {
+            font-size: clamp(19px, 3.5vw, 27px);
+            line-height: 1.7;
+            letter-spacing: -0.5px;
+        }
+
+        .quote-box p {
+            color: #a1a1aa;
+            font-size: 13px;
+            margin-top: 13px;
+        }
+
+        .project-intro {
+            color: #c4c4cc;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 25px;
+        }
+
+        .team-card {
+            border: 1px solid #303038;
+            background: #101014;
+            border-radius: 9px;
+            padding: 19px;
+        }
+
+        .team-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .team-avatar {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #494050;
+            background: #21162d;
+            color: var(--purple-light);
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 750;
+        }
+
+        .team-card h3 {
+            font-size: 15px;
+        }
+
+        .team-role {
+            color: var(--purple-light);
+            font-size: 11px;
+        }
+
+        .team-card p {
+            color: #b4b4be;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .responsibility-title {
+            font-size: 14px;
+            margin: 19px 0 10px;
+        }
+
+        .responsibility-list {
+            list-style: none;
+            display: grid;
+            gap: 9px;
+        }
+
+        .responsibility-list li {
+            position: relative;
+            padding: 12px 13px 12px 35px;
+            border: 1px solid #28282e;
+            background: #131316;
+            border-radius: 7px;
+            color: #c4c4cc;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .responsibility-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 13px;
+            top: 12px;
+            color: #4ade80;
+            font-weight: 800;
+        }
+
+        .project-footer {
+            margin-top: 23px;
+            padding: 16px;
+            background: #111114;
+            border: 1px solid #29292f;
+            border-radius: 8px;
+            color: #a1a1aa;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .project-footer span {
+            color: var(--purple-light);
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #1d1d22;
+            padding: 23px 0;
+            color: #71717a;
+            font-size: 11px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            color: #a1a1aa;
+            font-weight: 700;
+        }
+
+        .footer-brand span {
+            color: var(--purple-light);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+            .page {
+                padding-top: 25px;
+                padding-bottom: 45px;
+            }
+
+            .hero {
+                padding-top: 24px;
+            }
+
+            .home-grid,
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .window-content {
+                padding: 17px;
+            }
+
+            .data-row {
+                grid-template-columns: 105px minmax(0, 1fr);
+                gap: 9px;
+                font-size: 12px;
+            }
+
+            .quote-box {
+                padding: 18px;
+            }
+
+            .header {
+                height: 72px;
+            }
+
+            .menu-dropdown {
+                top: 63px;
+            }
+
+            .brand {
+                font-size: 19px;
+            }
+
+            .logo {
+                width: 39px;
+                height: 39px;
+                font-size: 23px;
+            }
+
+            .code {
+                font-size: 11px;
+                padding: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+
+            <a href="#home" class="brand" aria-label="Vc-tech trang chủ"
+               onclick="navigate('home'); return false;">
+                <div class="logo">V</div>
+                <div class="brand-name">Vc-<span>tech</span></div>
+            </a>
+
+            <button class="menu-button" id="menuButton"
+                    aria-label="Mở menu"
+                    aria-expanded="false"
+                    aria-controls="menuDropdown">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+        <nav class="menu-dropdown" id="menuDropdown" aria-label="Điều hướng">
+            <button data-page="home" class="active">
+                <span class="menu-icon">⌂</span>
+                Menu chính
+            </button>
+
+            <button data-page="about">
+                <span class="menu-icon">◉</span>
+                Giới thiệu
+            </button>
+
+            <button data-page="projects">
+                <span class="menu-icon">⌘</span>
+                Dự án
+            </button>
+        </nav>
+    </header>
+
+
+    <main class="container">
+
+        <!-- =========================
+             TRANG 1: MENU CHÍNH
+        ========================== -->
+
+        <section class="page active" id="home">
+
+            <div class="hero">
+
+                <div class="eyebrow">WELCOME TO VC-TECH</div>
+
+                <h1>
+                    Xin chào, đây là<br>
+                    Profile của <span class="gradient">Trọng Hiếu.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Chào mừng bạn đến với <strong>Vc-tech</strong> —
+                    không gian dành cho những người đam mê công nghệ,
+                    lập trình và sáng tạo không giới hạn.
+                    <br><br>
+                    Trong thế giới công nghệ không ngừng thay đổi,
+                    một dòng code có thể mở ra hàng nghìn ý tưởng.
+                    Từ phát triển website hiện đại, xây dựng Discord Bot
+                    thông minh đến tự động hóa những quy trình phức tạp,
+                    chúng tôi luôn hướng đến việc biến những ý tưởng
+                    táo bạo thành sản phẩm thực tế.
+                    <br><br>
+                    <strong>
+                        Không ngừng học hỏi. Dám nghĩ, dám làm.
+                        Viết code bằng tư duy, xây dựng tương lai bằng sáng tạo.
+                    </strong>
+                    Đó chính là tinh thần của Vc-tech.
+                </p>
+
+                <div class="buttons">
+                    <a class="btn btn-primary"
+                       href="https://discord.gg/PnvpsXbMDM"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <span>◈</span>
+                        Truy cập Server Discord
+                        <span>↗</span>
+                    </a>
+
+                    <button class="btn btn-secondary"
+                            onclick="navigate('about')">
+                        Khám phá Profile <span>→</span>
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- CODE WINDOW -->
+
+            <div class="window">
+
+                <div class="window-bar">
+                    <span class="window-title">project.javascript</span>
+
+                    <div class="window-dots" aria-label="Ba chấm trang trí">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                </div>
+
+                <div class="code">
+                    <div>
+                        <span class="line-number">1</span>
+                        <span class="code-purple">const</span>
+                        developer = {
+                    </div>
+
+                    <div>
+                        <span class="line-number">2</span>
+                        &nbsp;&nbsp;name:
+                        <span class="code-green">"Trọng Hiếu"</span>,
+                    </div>
+
+                    <div>
+                        <span class="line-number">3</span>
+                        &nbsp;&nbsp;mission:
+                        <span class="code-green">"Turn ideas into reality"</span>,
+                    </div>
+
+                    <div>
+                        <span class="line-number">4</span>
+                        &nbsp;&nbsp;skills: [
+                        <span class="code-yellow">"Web"</span>,
+                        <span class="code-yellow">"Bot"</span>,
+                        <span class="code-yellow">"Coding"</span>
+                        ],
+                    </div>
+
+                    <div>
+                        <span class="line-number">5</span>
+                        &nbsp;&nbsp;neverStopLearning:
+                        <span class="code-blue">true</span>
+                    </div>
+
+                    <div>
+                        <span class="line-number">6</span>
+                        };
+                    </div>
+
+                    <div>
+                        <span class="line-number">7</span>
+                        <span class="code-purple">console</span>.log(
+                        <span class="code-green">"Build something great."</span>);
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- TECHNOLOGY CARDS -->
+
+            <div class="home-grid">
+
+                <article class="mini-card">
+                    <div class="mini-icon">⌨️</div>
+                    <h3>Development</h3>
+                    <p>
+                        Phát triển tư duy lập trình, xây dựng cấu trúc
+                        code và biến ý tưởng thành giải pháp thực tế.
+                    </p>
+                </article>
+
+                <article class="mini-card">
+                    <div class="mini-icon">🌐</div>
+                    <h3>Web Technology</h3>
+                    <p>
+                        Xây dựng website hiện đại, giao diện trực quan,
+                        tối ưu trải nghiệm trên máy tính và điện thoại.
+                    </p>
+                </article>
+
+                <article class="mini-card">
+                    <div class="mini-icon">🤖</div>
+                    <h3>Bot & Automation</h3>
+                    <p>
+                        Phát triển bot, tự động hóa tác vụ và xây dựng
+                        các hệ thống hỗ trợ cộng đồng trực tuyến.
+                    </p>
+                </article>
+
+            </div>
+
+
+            <div class="quote-box">
+                <div class="quote-mark">“</div>
+
+                <h2>
+                    Đừng chỉ nghĩ về những gì có thể làm.
+                    Hãy bắt đầu xây dựng nó bằng chính khả năng của mình.
+                </h2>
+
+                <p>
+                    Vc-tech — Think clearly. Code creatively. Build relentlessly.
+                </p>
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             TRANG 2: GIỚI THIỆU
+        ========================== -->
+
+        <section class="page" id="about">
+
+            <div class="eyebrow">ABOUT THE DEVELOPER</div>
+
+            <h1>
+                Giới thiệu <span class="gradient">Profile.</span>
+            </h1>
+
+            <p class="section-description">
+                Thông tin cá nhân, định hướng và lĩnh vực công nghệ quan tâm.
+            </p>
+
+
+            <!-- PROFILE WINDOW -->
+
+            <div class="window">
+
+                <div class="window-bar">
+
+                    <div class="profile-header">
+                        <div class="logo">H</div>
+
+                        <div>
+                            <div class="profile-name">Trọng Hiếu</div>
+                            <div class="profile-subtitle">
+                                Developer Profile
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="window-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="window-content">
+
+                    <div class="status">
+                        <span class="status-dot"></span>
+                        <strong>developer</strong>
+                        <span>— Learning, building and improving.</span>
+                    </div>
+
+
+                    <div class="profile-data">
+
+                        <div class="data-row">
+                            <div class="data-label">Tên</div>
+                            <div class="data-value">Trọng Hiếu</div>
+                        </div>
+
+                        <div class="data-row">
+                            <div class="data-label">Biệt danh</div>
+                            <div class="data-value">Mars Hinz</div>
+                        </div>
+
+                        <div class="data-row">
+                            <div class="data-label">Quốc gia</div>
+                            <div class="data-value">VietNam</div>
+                        </div>
+
+                        <div class="data-row">
+                            <div class="data-label">Năm sinh</div>
+                            <div class="data-value">2011</div>
+                        </div>
+
+                        <div class="data-row">
+                            <div class="data-label">Chuyên đề</div>
+
+                            <div class="data-value expertise-list">
+                                <span>Viết code, mã hóa.</span>
+                                <span>Lập trình, khởi chạy.</span>
+                                <span>Lập trình website, bot.</span>
+                                <span>Tạo máy chủ truy cập toàn cầu.</span>
+                                <span>Tạo bot Discord, Zalo, Messenger, Telegram.</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE FEATURES -->
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <div>Không ngừng học hỏi</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div>VietNam</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div>Không ngừng học hỏi</div>
+                </div>
+
+            </div>
+
+
+            <h2 class="section-heading">Định hướng phát triển</h2>
+
+            <p class="section-description">
+                Mỗi dự án là một cơ hội để học hỏi, thử nghiệm
+                và hoàn thiện kỹ năng lập trình.
+            </p>
+
+
+            <div class="home-grid">
+
+                <article class="mini-card">
+                    <div class="mini-icon">💻</div>
+                    <h3>Programming</h3>
+                    <p>
+                        Phát triển khả năng tư duy logic, tổ chức mã nguồn
+                        và xây dựng chương trình có cấu trúc rõ ràng.
+                    </p>
+                </article>
+
+                <article class="mini-card">
+                    <div class="mini-icon">⚙️</div>
+                    <h3>System & Bot</h3>
+                    <p>
+                        Tìm hiểu cách thiết kế, cấu hình, vận hành bot
+                        và tối ưu các chức năng tự động hóa.
+                    </p>
+                </article>
+
+                <article class="mini-card">
+                    <div class="mini-icon">🚀</div>
+                    <h3>Innovation</h3>
+                    <p>
+                        Luôn thử nghiệm ý tưởng mới, tiếp thu kiến thức
+                        và từng bước nâng cao chất lượng sản phẩm.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             TRANG 3: DỰ ÁN
+        ========================== -->
+
+        <section class="page" id="projects">
+
+            <!-- EMPTY TITLE WINDOW -->
+
+            <div class="window">
+
+                <div class="window-bar">
+                    <span class="window-title"></span>
+
+                    <div class="window-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                </div>
+
+                <div class="window-content">
+
+                    <div class="eyebrow">OUR MINDSET</div>
+
+                    <h1>
+                        Think it.<br>
+                        <span class="gradient">Build it.</span>
+                        Improve it.
+                    </h1>
+
+                    <p class="hero-description" style="margin-bottom: 0;">
+                        Không ngừng bỏ cuộc, hãy khiến suy nghĩ của mình
+                        thành sản phẩm. Dám nghĩ, dám làm. Không ngừng
+                        học hỏi, ngày càng phát triển.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DISCORD PROJECT WINDOW -->
+
+            <div class="window" style="margin-top: 25px;">
+
+                <div class="window-bar">
+
+                    <span class="window-title">Dự án Discord Server</span>
+
+                    <div class="window-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="window-content">
+
+                    <div class="eyebrow">FEATURED PROJECT</div>
+
+                    <h2 class="section-heading" style="margin-top: 0;">
+                        Discord Server <span class="gradient">Development</span>
+                    </h2>
+
+                    <p class="project-intro">
+                        Dự án phát triển máy chủ Discord toàn cầu và xây dựng
+                        bot phục vụ cộng đồng. Tập trung vào cấu hình bot,
+                        hệ thống lệnh, xử lý tin nhắn, tự động hóa và tổ chức
+                        các chức năng phù hợp với nhu cầu của từng máy chủ.
+                    </p>
+
+
+                    <!-- TEAM MEMBERS -->
+
+                    <div class="team-grid">
+
+                        <article class="team-card">
+
+                            <div class="team-top">
+
+                                <div class="team-avatar">H</div>
+
+                                <div>
+                                    <h3>Trọng Hiếu</h3>
+                                    <div class="team-role">
+                                        Developer · VietNam
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <p>
+                                Xuất thân từ VietNam, sinh năm 2011.
+                                Đã từng tạo bot cho các máy chủ khác nhau
+                                và có kinh nghiệm viết code.
+                            </p>
+
+                        </article>
+
+
+                        <article class="team-card">
+
+                            <div class="team-top">
+
+                                <div class="team-avatar">D</div>
+
+                                <div>
+                                    <h3>Dark</h3>
+                                    <div class="team-role">
+                                        Bot Operations · Bangladesh
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <p>
+                                Xuất thân từ Bangladesh, sinh năm 2009.
+                                Có kinh nghiệm vận hành bot liên tục 24/7.
+                                Hiện duy trì hơn 20 bot cho 12 máy chủ
+                                trên toàn cầu.
+                            </p>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- RESPONSIBILITIES -->
+
+                    <h3 class="responsibility-title">
+                        Trọng Hiếu — Phát triển & cấu hình
+                    </h3>
+
+                    <ul class="responsibility-list">
+
+                        <li>
+                            Viết cấu hình bot và xây dựng cấu trúc bot.
+                        </li>
+
+                        <li>
+                            Phát triển các lệnh command và chức năng riêng
+                            cho từng bot.
+                        </li>
+
+                        <li>
+                            Viết, chỉnh sửa và kiểm tra code vận hành bot.
+                        </li>
+
+                        <li>
+                            Thiết lập và hoàn thiện các chức năng cần thiết
+                            cho từng máy chủ.
+                        </li>
+
+                    </ul>
+
+
+                    <h3 class="responsibility-title">
+                        Dark — Vận hành & xử lý tự động
+                    </h3>
+
+                    <ul class="responsibility-list">
+
+                        <li>
+                            Khởi chạy, theo dõi và duy trì bot hoạt động 24/7.
+                        </li>
+
+                        <li>
+                            Thiết lập vai trò và quyền sử dụng bot
+                            cho các thành viên.
+                        </li>
+
+                        <li>
+                            Phát triển chức năng phân tích tin nhắn
+                            và phản hồi tự động theo từng câu lệnh.
+                        </li>
+
+                        <li>
+                            Hỗ trợ quản lý hoạt động của bot trên
+                            các máy chủ Discord.
+                        </li>
+
+                    </ul>
+
+
+                    <div class="project-footer">
+                        <span>Vc-tech</span> · Think clearly.
+                        Build creatively. Never stop learning.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DISCORD CTA -->
+
+            <div class="quote-box" style="margin-top: 25px;">
+
+                <div class="quote-mark">⌘</div>
+
+                <h2>
+                    Cùng khám phá cộng đồng và những dự án công nghệ.
+                </h2>
+
+                <p>
+                    Tham gia máy chủ Discord để kết nối và tìm hiểu thêm.
+                </p>
+
+                <div style="margin-top: 19px;">
+                    <a class="btn btn-primary"
+                       href="https://discord.gg/PnvpsXbMDM"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Truy cập Server Discord ↗
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="container footer-inner">
+
+            <div class="footer-brand">
+                Vc-<span>tech</span> · Developer Profile
+            </div>
+
+            <div>
+                © <span id="year"></span> Vc-tech. All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        const menuButton = document.getElementById("menuButton");
+        const menuDropdown = document.getElementById("menuDropdown");
+        const menuItems = document.querySelectorAll("[data-page]");
+        const pages = document.querySelectorAll(".page");
+
+        const pageTitles = {
+            home: "Vc-tech | Developer Profile",
+            about: "Giới thiệu | Vc-tech",
+            projects: "Dự án | Vc-tech"
+        };
+
+        function openMenu() {
+            menuDropdown.classList.add("open");
+            menuButton.classList.add("active");
+            menuButton.setAttribute("aria-expanded", "true");
+        }
+
+        function closeMenu() {
+            menuDropdown.classList.remove("open");
+            menuButton.classList.remove("active");
+            menuButton.setAttribute("aria-expanded", "false");
+        }
+
+        menuButton.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            if (menuDropdown.classList.contains("open")) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        function navigate(pageId) {
+            const targetPage = document.getElementById(pageId);
+
+            if (!targetPage) {
+                return;
+            }
+
+            pages.forEach(function (page) {
+                page.classList.toggle("active", page.id === pageId);
+            });
+
+            menuItems.forEach(function (item) {
+                const isActive = item.dataset.page === pageId;
+
+                item.classList.toggle("active", isActive);
+
+                if (isActive) {
+                    item.setAttribute("aria-current", "page");
+                } else {
+                    item.removeAttribute("aria-current");
+                }
+            });
+
+            document.title = pageTitles[pageId] || "Vc-tech";
+
+            closeMenu();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+            if (window.location.hash !== "#" + pageId) {
+                history.pushState(
+                    { page: pageId },
+                    "",
+                    "#" + pageId
+                );
+            }
+        }
+
+        menuItems.forEach(function (item) {
+            item.addEventListener("click", function () {
+                navigate(item.dataset.page);
+            });
+        });
+
+        document.addEventListener("click", function (event) {
+            if (
+                !menuDropdown.contains(event.target) &&
+                !menuButton.contains(event.target)
+            ) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        function loadPageFromHash() {
+            const pageId = window.location.hash.replace("#", "");
+
+            const validPages = ["home", "about", "projects"];
+
+            if (validPages.includes(pageId)) {
+                pages.forEach(function (page) {
+                    page.classList.toggle("active", page.id === pageId);
+                });
+
+                menuItems.forEach(function (item) {
+                    const isActive = item.dataset.page === pageId;
+
+                    item.classList.toggle("active", isActive);
+
+                    if (isActive) {
+                        item.setAttribute("aria-current", "page");
+                    } else {
+                        item.removeAttribute("aria-current");
+                    }
+                });
+
+                document.title = pageTitles[pageId];
+            } else {
+                pages.forEach(function (page) {
+                    page.classList.toggle("active", page.id === "home");
+                });
+            }
+        }
+
+        window.addEventListener("popstate", loadPageFromHash);
+        window.addEventListener("hashchange", loadPageFromHash);
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        loadPageFromHash();
+    </script>
+
+</body>
+</html>
